@@ -1,34 +1,29 @@
 class HomeController < ApplicationController
 
 	def index
-		puts "!!!!!!"
-		puts (cookies.signed[:gold] || 0).class
-		@gold = cookies.signed[:gold] || 0
-		@gold_miners = cookies.signed[:gold_miners] || 0
-		@rubies = cookies.signed[:rubies] || 0
-		@ruby_miners = cookies.signed[:ruby_miners] || 0
-		@money = cookies.signed[:money] || 0
+		#TODO optimize for infinite amount of ores
+		@gold = cookies.signed[:gold].to_i
+		@gold_miners = cookies.signed[:gold_miners].to_i
+		@rubies = cookies.signed[:rubies].to_i
+		@ruby_miners = cookies.signed[:ruby_miners].to_i
+		@money = cookies.signed[:money].to_i
 	end	
 
 	def save
-		[:gold, :gold_miners, :rubies, :ruby_miners, :money].each do |param|
-			cookies.signed.permanent[param] = params[param.to_s] || 0
+		params[:game_data].each_pair do |k, v|
+			cookies.signed.permanent[k.to_sym] = v
 		end	
-		# cookies.signed.permanent[:gold] = params["gold"]
-		# # cookies.signed.permanent[:gold_miners] = params["gold_miners"]
-		# cookies.signed.permanent[:rubies] = params["rubies"]
-		# # cookies.signed.permanent[:ruby_miners] = params["ruby_miners"]
-		# cookies.signed.permanent[:money] = params["money"]
-		render text: cookies.signed[:gold]
+		render text: "Game Saved"
 	end
 
 	def delete_cookies
+		#TODO optimize for infinite amount of ores
 		cookies.delete :gold
 		cookies.delete :gold_miners
 		cookies.delete :rubies
 		cookies.delete :ruby_miners
 		cookies.delete :money
-		render nothing: true
+		redirect_to :root
 	end
 
 end

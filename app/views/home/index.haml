@@ -1,9 +1,11 @@
 %h1 ruby mine v0.1
-= link_to "delete cookies", delete_cookies_path, style: "color:yellow", remote: true
+= link_to "delete cookies", delete_cookies_path, style: "color:yellow" 
+= link_to "save", "#", style: "color:yellow;margin-left: 20px", class: "save_game btn"
 
 %hr
 
 #stats
+/TODO optimize the table for infinite amount of ores
 	%table
 		%tr.headers
 			%th ore
@@ -15,7 +17,7 @@
 			%td gold
 			%td.amount= @gold
 			%td.miners= @gold_miners
-			%td.value= count_value(@gold, :gold)
+			%td.value
 			%td
 				= link_to "hire", '#', class: "btn"
 				= link_to "sell", '#', class: "btn"
@@ -23,7 +25,7 @@
 			%td ruby
 			%td.amount= @rubies
 			%td.miners= @ruby_miners
-			%td.value= count_value(@rubies, :ruby)
+			%td.value
 			%td
 				= link_to "hire", '#', class: "btn"
 				= link_to "sell", '#', class: "btn"

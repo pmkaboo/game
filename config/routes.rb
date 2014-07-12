@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  post "/home/save" => 'home#save'
+  post "/home/save" => 'home#save', as: "save_game"
   get "/home/delete_cookies" => 'home#delete_cookies', as: "delete_cookies"
 
   # Example of regular route:
