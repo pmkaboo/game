@@ -1,0 +1,72 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// sticky footer
+*
+	margin: 0
+html, body 
+	height: 100%
+.wrapper 
+	min-height: 100%
+	height: auto !important
+	height: 100%
+	margin: 0 auto -45px // the bottom margin is the negative value of the footer's height
+footer, .push 
+	height: 45px // '.push' must be the same height as 'footer'
+
+// colors & shit
+body
+	background-color: #111
+	color: #E0115F
+	margin-left: 50px
+	margin-right: 50px
+a
+	color: #E0115F
+a:hover
+	color: #FFFFFF
+
+.ore
+	width: 100px
+	height: 100px
+	float: left
+	padding-left: 20px
+.ore.gold
+	background-color: gold
+.ore.ruby
+	background-color: red
+.raven
+	color: black !important
+
+// wrapper
+#stats, #rocks .ore
+	margin: 20px
+
+// footer
+#notification
+	float: right
+	margin-right: 50px
+	font-size: large
+
+.footer-text
+	margin-left: 50px
+	font-size: small
+	span
+		float: left
+		margin-right: 50px
+
+
+
+

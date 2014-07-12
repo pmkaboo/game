@@ -1,0 +1,73 @@
+// This is a manifest file that'll be compiled into application.js, which will include all the files
+// listed below.
+//
+// Any JavaScript/Coffee file within this directory, lib/assets/javascripts, vendor/assets/javascripts,
+// or vendor/assets/javascripts of plugins, if any, can be referenced here using a relative path.
+//
+// It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
+// compiled file.
+//
+// Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
+// about supported directives.
+//
+//= require jquery
+//= require jquery_ujs
+//= require turbolinks
+//= require_tree .
+
+
+var gold = 0;
+var gold_miners = 0;
+var gold_modifier = 5;
+var rubies = 0;
+var ruby_miners = 0;
+var ruby_modifier = 30;
+var money = 0;
+
+$(function() {
+	gold = parseInt($("#stats .gold .amount").text());
+	gold_miners = parseInt($("#stats .gold .miners").text());
+	rubies = parseInt($("#stats .rubies .amount").text());
+	ruby_miners = parseInt($("#stats .rubies .miners").text());
+	money = parseInt($("#stats .money .value").text());
+})
+
+$(document).on("click", ".ore.ruby", function(){
+	if(Math.floor(Math.random() * 5) == 1) {
+			rubies += 1;
+			update_stats(rubies, ruby_modifier, "rubies");
+	}
+});	
+$(document).on("click", ".ore.gold", function(){
+	if(Math.floor(Math.random() * 10) > 0) {
+		gold += 1;
+		update_stats(gold, gold_modifier, "gold");
+	}
+});	
+function update_stats(material, modifier, klass) {
+	$("#stats ." + klass + " .amount").text(material);
+	$("#stats ." + klass + " .value").text(material * modifier);
+}
+
+setInterval(function() {
+	$.ajax({
+		type: "POST",
+		url: "/home/save",
+		data: {
+			gold: gold,
+			rubies: rubies
+		},
+		success: function(msg) {
+			$("#notification").text(msg);
+			$("#notification").show();
+			setTimeout(function() {
+		        $("#notification").fadeOut(500)
+		    }, 2000);
+		}
+	})
+}, 5000);
+
+
+
+
+

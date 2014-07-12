@@ -1,0 +1,17 @@
+!!!
+%html
+	%head
+		%title Game
+		= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+		= javascript_include_tag 'application', 'data-turbolinks-track' => true
+		= csrf_meta_tags
+	%body
+		.wrapper
+			%br
+			= yield
+			.push
+		%footer
+			.footer-text
+				%span.raven wicked-raven
+			#notification{style: "display:none"}
+				Game Saved
