@@ -1,6 +1,7 @@
 %h1 ruby mine v0.1
 .main_btns
 	= link_to "delete cookies", delete_cookies_path, class: "btn"
+	= link_to "money cheat", "#", class: "money_cheat btn"
 	= link_to "save", "#", class: "save_game btn"
 
 %hr
@@ -12,6 +13,7 @@
 				%th ore
 				%th in inventory
 				%th miners
+				%th max_miners
 				%th total value
 				%th action
 		%tbody
@@ -20,23 +22,25 @@
 					%td= name
 					%td.amount= ore_data["amount"].to_i
 					%td.miners= ore_data["miners"].to_i
+					%td.max_miners= ore_data["max_miners"].to_i
 					%td.value
 					%td
-						= link_to "hire", '#', class: "btn"
-						= link_to "sell", '#', class: "btn"
-		%tr.money
-			%td
-				money: 
-				%span.value= @money
-			%td
-			%td
-			%td
-			%td= link_to "sell_all", "#", class: "btn"
+						= link_to "hire", '#', class: "hire btn"
+						= link_to "sell", '#', class: "sell btn"
+			%tr.money
+				%td
+					money: 
+					%span.value= @money
+				%td
+				%td
+				%td
+				%td.total_value
+				%td= link_to "sell_all", "#", class: "btn"
 
 %hr
 
 #rocks
 	- @game_data.keys.each do |name|
-		.ore{class: name}
+		.ore{class: "#{name} raven"}= name
 
 
