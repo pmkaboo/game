@@ -1,28 +1,22 @@
 class HomeController < ApplicationController
 
 	def index
-		#TODO optimize for infinite amount of ores
-		@gold = cookies.signed[:gold].to_i
-		@gold_miners = cookies.signed[:gold_miners].to_i
-		@rubies = cookies.signed[:rubies].to_i
-		@ruby_miners = cookies.signed[:ruby_miners].to_i
-		@money = cookies.signed[:money].to_i
+		if cookies.signed[:game_data]
+			@game_data = JSON.parse cookies.signed[:game_data]
+			@money = @game_data.delete "money"
+		else
+			@game_data = {gold: {}, ruby: {}}
+			@money = 0
+		end
 	end	
 
 	def save
-		params[:game_data].each_pair do |k, v|
-			cookies.signed.permanent[k.to_sym] = v
-		end	
+		cookies.signed.permanent[:game_data] = params[:game_data].symbolize_keys.to_json
 		render text: "Game Saved"
 	end
 
 	def delete_cookies
-		#TODO optimize for infinite amount of ores
-		cookies.delete :gold
-		cookies.delete :gold_miners
-		cookies.delete :rubies
-		cookies.delete :ruby_miners
-		cookies.delete :money
+		cookies.delete :game_data
 		redirect_to :root
 	end
 

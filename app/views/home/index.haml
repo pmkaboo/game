@@ -5,31 +5,25 @@
 
 %hr
 
-/TODO optimize the table for infinite amount of ores
 #stats
 	%table
-		%tr.headers
-			%th ore
-			%th in inventory
-			%th miners
-			%th total value
-			%th action
-		%tr.gold
-			%td gold
-			%td.amount= @gold
-			%td.miners= @gold_miners
-			%td.value
-			%td
-				= link_to "hire", '#', class: "btn"
-				= link_to "sell", '#', class: "btn"
-		%tr.rubies
-			%td ruby
-			%td.amount= @rubies
-			%td.miners= @ruby_miners
-			%td.value
-			%td
-				= link_to "hire", '#', class: "btn"
-				= link_to "sell", '#', class: "btn"
+		%thead
+			%tr.headers
+				%th ore
+				%th in inventory
+				%th miners
+				%th total value
+				%th action
+		%tbody
+			- @game_data.each_pair do |name, ore_data|
+				%tr{class: name}
+					%td= name
+					%td.amount= ore_data["amount"].to_i
+					%td.miners= ore_data["miners"].to_i
+					%td.value
+					%td
+						= link_to "hire", '#', class: "btn"
+						= link_to "sell", '#', class: "btn"
 	.money
 		money: 
 		%span.value= @money
