@@ -24,16 +24,19 @@
 					%td
 						= link_to "hire", '#', class: "btn"
 						= link_to "sell", '#', class: "btn"
-	.money
-		money: 
-		%span.value= @money
+		%tr.money
+			%td
+				money: 
+				%span.value= @money
+			%td
+			%td
+			%td
+			%td= link_to "sell_all", "#", class: "btn"
 
 %hr
 
 #rocks
-	.ore.gold
-	.ore.ruby
-
-%hr{style: "clear:both"}
+	- @game_data.keys.each do |name|
+		.ore{class: name}
 
 
