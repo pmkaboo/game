@@ -11,6 +11,21 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+/db/schema.rb
+
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
+/tmp/*
+/nbproject/private/
+
+/config/database.yml
+/config/secrets.yml
+
+.rvmrc
+.ruby-gemset
+.ruby-version
+/nbproject/*
+/temp/*
+.idea
+Gemfile.lock
+*~
