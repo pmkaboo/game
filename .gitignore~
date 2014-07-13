@@ -18,8 +18,8 @@
 /tmp/*
 /nbproject/private/
 
-/config/database.yml
-/config/secrets.yml
+config/database.yml
+config/secrets.yml
 
 .rvmrc
 .ruby-gemset
