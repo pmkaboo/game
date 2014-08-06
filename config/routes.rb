@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post "/home/save" => 'home#save', as: "save_game"
   get "/home/delete_cookies" => 'home#delete_cookies', as: "delete_cookies"
 
+  resources :items
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

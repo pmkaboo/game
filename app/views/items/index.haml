@@ -1,0 +1,8 @@
+%h1 items
+= form_tag :items, method: :get do
+	= text_field_tag :search
+	= submit_tag "search!"
+	
+%ul
+	- @root_items.each do |root_item|
+		= filtered_subtree(root_item)
