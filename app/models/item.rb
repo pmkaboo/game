@@ -11,7 +11,7 @@ class Item < ActiveRecord::Base
 	end
 
 	def self.filtered_list text
-		Item.where("name like '%#{text}%'").map do |i|
+		Item.where("name like ?", "%#{text}%").map do |i|
 			i.self_and_parents
 		end.flatten
 	end
